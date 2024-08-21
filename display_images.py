@@ -7,7 +7,7 @@
 # Last Modified: 2024-08-21
 #
 # Part of the Blend Mode Compendium Project
-# Requires: matplotlib
+# Requires: matplotlib, numpy, PIL
 # 
 # Usage: Import this module and call the functions with appropriate parameters.
 # Example:
@@ -15,6 +15,8 @@
 # plot_2_images(image1, image2, caption_A="Custom Caption 1", caption_B="Custom Caption 2")
 
 import matplotlib.pyplot as plt
+import numpy as np
+from blend_mode_functions import blend_images
 
 def plot_2_images(image_A, image_B, caption_A="Image A", caption_B="Image B"):
     """
@@ -41,3 +43,33 @@ def plot_2_images(image_A, image_B, caption_A="Image A", caption_B="Image B"):
     plt.title(caption_B)
 
     plt.show()
+    return
+    
+def create_alpha_transition_graphic(image1, image2, num_steps=5):
+    """
+    Creates a graphic with a sequence of images transitioning between two input images with varying alpha values.
+    
+    Parameters:
+    - image1: The first input PIL image.
+    - image2: The second input PIL image.
+    - num_steps: Number of transition steps (default is 5).
+    
+    Returns:
+    - A Matplotlib figure displaying the transition steps.
+    """
+    # Calculate the alpha values
+    alphas = np.linspace(0, 1, num_steps)
+    
+    # Create a figure to display the images
+    fig, axes = plt.subplots(1, num_steps, figsize=(num_steps * 4, 5))
+    
+    # For each alpha value, blend the images and display them in the figure
+    for i, alpha in enumerate(alphas):
+        blended_image = blend_images(image1, image2, alpha)
+        axes[i].imshow(blended_image)
+        axes[i].axis('off')
+        axes[i].set_title(f"Alpha: {alpha:.2f}", fontsize=12)
+    
+    plt.tight_layout()
+    plt.show()
+    return
