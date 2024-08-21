@@ -32,20 +32,20 @@ def plot_2_images(image_A, image_B, caption_A="Image A", caption_B="Image B"):
 
     # Display first image
     plt.subplot(1, 2, 1)
-    plt.imshow(image_A)
+    plt.imshow((image_A*255).astype(int))
     plt.axis('off')  # Hide the axes
     plt.title(caption_A)
 
     # Display second image
     plt.subplot(1, 2, 2)
-    plt.imshow(image_B)
+    plt.imshow((image_B*255).astype(int))
     plt.axis('off')  # Hide the axes
     plt.title(caption_B)
 
     plt.show()
     return
     
-def create_alpha_transition_graphic(image1, image2, num_steps=5):
+def create_alpha_transition_graphic(image1, image2, num_steps=5, blend_mode='normal'):
     """
     Creates a graphic with a sequence of images transitioning between two input images with varying alpha values.
     
@@ -65,8 +65,8 @@ def create_alpha_transition_graphic(image1, image2, num_steps=5):
     
     # For each alpha value, blend the images and display them in the figure
     for i, alpha in enumerate(alphas):
-        blended_image = blend_images(image1, image2, alpha)
-        axes[i].imshow(blended_image)
+        blended_image = blend_images(image1, image2, alpha, blend_mode)
+        axes[i].imshow((blended_image*255).astype(int))
         axes[i].axis('off')
         axes[i].set_title(f"Alpha: {alpha:.2f}", fontsize=12)
     

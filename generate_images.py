@@ -63,7 +63,7 @@ def generate_striped_images(num_colors, image_size):
         image_horizontal_stripes[i * stripe_height:(i + 1) * stripe_height, :] = color
         image_vertical_stripes[:, i * stripe_width:(i + 1) * stripe_width] = color
        
-    return (255*image_horizontal_stripes).astype(int), (255*image_vertical_stripes).astype(int)
+    return image_horizontal_stripes, image_vertical_stripes
 
 def load_and_crop_to_square(image_path_A, image_path_B):
     """
@@ -103,4 +103,4 @@ def load_and_crop_to_square(image_path_A, image_path_B):
     top_B = (h_B - final_size) // 2
     cropped_B = image_B[top_B:top_B + final_size, left_B:left_B + final_size]
 
-    return cropped_A, cropped_B
+    return cropped_A/255, cropped_B/255
