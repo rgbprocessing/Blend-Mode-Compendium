@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# display_functions.py
+# display_images.py
 # This file contains display functions for resulting images
 #
 # Author: Dani
@@ -11,12 +11,12 @@
 # 
 # Usage: Import this module and call the functions with appropriate parameters.
 # Example:
-# from display_functions import plot_2_images
-# plot_images(image1, image2, caption_A="Custom Caption 1", caption_B="Custom Caption 2")
+# from display_images import plot_2_images
+# plot_2_images(image1, image2, caption_A="Custom Caption 1", caption_B="Custom Caption 2")
 
 import matplotlib.pyplot as plt
 
-def plot_images(image_A, image_B, caption_A="Image A", caption_B="Image B"):
+def plot_2_images(image_A, image_B, caption_A="Image A", caption_B="Image B"):
     """
     Plots two images side by side with custom captions.
 

@@ -1,2 +1,4 @@
 .gitattributes
 /.spyproject/
+/__pycache__/
+/.ipynb_checkpoints/
