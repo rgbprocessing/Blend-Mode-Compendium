@@ -74,20 +74,11 @@ def blend_images(image1, image2, alpha=1, blend_mode='normal'):
     elif blend_mode == 'darken':
         blended_image = np.minimum(image1, image2)
 
-    elif blend_mode == 'color burn':
-        blended_image = 1 - np.minimum(1, (1 - image1) / (image2 + 1e-10))
-
     elif blend_mode == 'linear burn':
         blended_image = np.maximum(0, image1 + image2 - 1)
     
     elif blend_mode == 'difference':
         blended_image = np.abs(image1[:,:,0:3] - image2[:,:,0:3])
-        
-    elif blend_mode == 'divide':
-        # Avoid division by zero by adding a small value to image2
-        epsilon = 1e-10
-        blended_image = np.divide(image1, np.clip(image2, epsilon, 1))
-        blended_image = np.clip(blended_image, 0, 1)
 
     elif blend_mode == 'lighten':
         blended_image = np.maximum(image1, image2)

@@ -47,7 +47,7 @@ def process_images(image_folder, image1, image2):
                 
                 #calculate SAE
                 sae = calculate_absolute_error(actual_image[:,:,0:3], generated_image[:,:,0:3])
-                if sae > threshold:
+                if sae == threshold:
                     print(f"Images '{blend_mode}' have SAE: {sae:.5f}")
             except:
                 print('not implemented', blend_mode)
@@ -58,5 +58,6 @@ image1 = mpimg.imread(os.path.join(test_dir,'image_horizontal_stripes.png'))
 image2 = mpimg.imread(os.path.join(test_dir,'image_vertical_stripes.png'))
 process_images(image_folder, image1, image2)
 image_folder = "photoshop images 2"  # Folder where your images are stored
-image1, image2 = load_and_crop_to_square(os.path.join(test_dir,'imageA.jpg'),os.path.join(test_dir,'imageB.jpg'))
+image1 = mpimg.imread(os.path.join(test_dir,'imageAcropped.png'))
+image2 = mpimg.imread(os.path.join(test_dir,'imageBcropped.png'))
 process_images(image_folder, image1, image2)
