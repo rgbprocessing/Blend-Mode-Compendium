@@ -47,7 +47,7 @@ def process_images(image_folder, image1, image2):
                 
                 #calculate SAE
                 sae = calculate_absolute_error(actual_image[:,:,0:3], generated_image[:,:,0:3])
-                if sae == threshold:
+                if sae > threshold:
                     print(f"Images '{blend_mode}' have SAE: {sae:.5f}")
             except:
                 print('not implemented', blend_mode)
