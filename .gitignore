@@ -2,3 +2,10 @@
 /.spyproject/
 /__pycache__/
 /.ipynb_checkpoints/
+Untitled.ipynb
+testing scripts/ignore.py
+testing scripts/.ipynb_checkpoints/Untitled-checkpoint.ipynb
+/functions/image_functions/__pycache__
+/functions/calculations/__pycache__
+/functions/blend_mode_functions/__pycache__
+/functions/__pycache__
