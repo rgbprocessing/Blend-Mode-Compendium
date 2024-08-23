@@ -6,10 +6,8 @@ Python implementation of 2 layer blend modes. See
 You can view the mode summaries in the [Jupyter Notebook](https://github.com/rgbprocessing/Blend-Mode-Compendium/blob/main/Blend%20Mode%20Compendium.ipynb).
 
 ## Implemented Blend Modes:
-- color burn
 - darken
 - difference
-- divide
 - lighten
 - linear burn
 - linear dodge
