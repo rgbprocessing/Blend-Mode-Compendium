@@ -1,17 +1,22 @@
 # Blend-Mode-Compendium
-Python implementation of 2 layer blend modes.
+Python implementation of 2 layer blend modes. See 
 
-##Implemented Blend Modes:
--color burn
--darken
--difference
--divide
--lighten
--linear burn
--linear dodge
--multiply
--normal
--overlay
--screen
+## Jupyter Notebook
 
-##Blend Mode Documentation
+You can view the mode summaries in the [Jupyter Notebook](https://github.com/rgbprocessing/Blend-Mode-Compendium/blob/main/Blend%20Mode%20Compendium.ipynb).
+
+## Implemented Blend Modes:
+- color burn
+- darken
+- difference
+- divide
+- lighten
+- linear burn
+- linear dodge
+- multiply
+- normal
+- overlay
+- screen
+
+## Blend Mode Documentation
+**To Be Updated**
