@@ -48,6 +48,7 @@ def blend_images(image1, image2, alpha=1, blend_mode='normal'):
     - Blended image as a NumPy array.
     """
     skipone = False #sets flag for cases where we need to skip without erroring out
+    epsilon = 1e-10
     
     # Ensure both images have the same dimensions
     if image1.shape != image2.shape:
@@ -71,8 +72,15 @@ def blend_images(image1, image2, alpha=1, blend_mode='normal'):
                                  2 * image2 * image1,
                                  1 - 2 * (1 - image2) * (1 - image1))
             
+    elif blend_mode == 'color burn':
+        blended_image = 1 - np.minimum(1, (1 - image1) / np.clip(image2, epsilon, 1))
+    
     elif blend_mode == 'darken':
         blended_image = np.minimum(image1, image2)
+        
+    elif blend_mode == 'divide':
+        # Avoid division by zero by adding a small value to image2
+        blended_image = np.divide(image1, np.clip(image2, epsilon, 1))
 
     elif blend_mode == 'linear burn':
         blended_image = np.maximum(0, image1 + image2 - 1)
