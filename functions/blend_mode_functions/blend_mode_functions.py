@@ -64,16 +64,24 @@ def blend_images(image1, image2, alpha=1, blend_mode='normal'):
     elif blend_mode == 'screen':
         blended_image = screen(image1, image2)
         
+    elif blend_mode == 'exclusion':
+        blended_image = np.abs(image1 + image2 - 2 * image1 * image2)
         
     elif blend_mode == 'overlay':
-        image1=image1[:,:,0:3]
-        image2=image2[:,:,0:3]
         blended_image = np.where(image1 < 0.5,
                                  2 * image2 * image1,
                                  1 - 2 * (1 - image2) * (1 - image1))
+        
+    elif blend_mode == 'hard mix':
+        blended_image = np.where(image1 + image2 >= 1, 1, 0)
             
     elif blend_mode == 'color burn':
+        # Avoid division by zero and prevent values greater than 1
         blended_image = 1 - np.minimum(1, (1 - image1) / np.clip(image2, epsilon, 1))
+        
+    elif blend_mode == 'color dodge':
+        # Avoid division by zero and prevent values greater than 1
+        blended_image = np.where(image2 == 0, 1, np.clip(image1 / (1 - image2), 0, 1))
     
     elif blend_mode == 'darken':
         blended_image = np.minimum(image1, image2)
@@ -90,6 +98,11 @@ def blend_images(image1, image2, alpha=1, blend_mode='normal'):
 
     elif blend_mode == 'lighten':
         blended_image = np.maximum(image1, image2)
+        
+    elif blend_mode == 'hard light':
+            blended_image = np.where(image2 < 0.5,
+                                     2 * image2 * image1,
+                                     1 - 2 * (1 - image2) * (1 - image1))
 
     elif blend_mode == 'linear dodge':
         blended_image = np.clip(image1 + image2, 0, 1)
