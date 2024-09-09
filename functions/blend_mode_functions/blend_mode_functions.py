@@ -312,13 +312,13 @@ def blend_images(image1, image2, alpha=1, blend_mode='normal'):
         blended_image = hue(image1, image2)
         
     elif blend_mode == 'saturation':
-        blended_image = hue(image1, image2)
+        blended_image = saturation(image1, image2)
         
     elif blend_mode == 'color':
-        blended_image = hue(image1, image2)
+        blended_image = color(image1, image2)
         
     elif blend_mode == 'luminosity':
-        blended_image = hue(image1, image2)
+        blended_image = luminosity(image1, image2)
         
     else:
         print('not implemented yet: ', blend_mode)
