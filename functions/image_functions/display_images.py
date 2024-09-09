@@ -19,7 +19,7 @@ import numpy as np
 from ..blend_mode_functions import blend_images
 #..folder1.functionA import some_function_from_A
 
-def plot_2_images(image_A, image_B, caption_A="Image A", caption_B="Image B"):
+def plot_2_images(image_A, image_B, caption_A="Image A", caption_B="Image B", show=True):
     """
     Plots two images side by side with custom captions.
 
@@ -29,22 +29,21 @@ def plot_2_images(image_A, image_B, caption_A="Image A", caption_B="Image B"):
     - caption_A: Caption for the first image (default: "Image A").
     - caption_B: Caption for the second image (default: "Image B").
     """
-    plt.figure(figsize=(12, 6))
+    fig, axs = plt.subplots(1, 2, figsize=(12, 6))
 
     # Display first image
-    plt.subplot(1, 2, 1)
-    plt.imshow((np.round(image_A*255)).astype(int))
-    plt.axis('off')  # Hide the axes
-    plt.title(caption_A)
+    axs[0].imshow((np.round(image_A*255)).astype(int))
+    axs[0].axis('off')  # Hide the axes
+    axs[0].set_title(caption_A)
 
     # Display second image
-    plt.subplot(1, 2, 2)
-    plt.imshow((np.round(image_B*255)).astype(int))
-    plt.axis('off')  # Hide the axes
-    plt.title(caption_B)
+    axs[1].imshow((np.round(image_B*255)).astype(int))
+    axs[1].axis('off')  # Hide the axes
+    axs[1].set_title(caption_B)
 
-    plt.show()
-    return
+    if show:
+        plt.show()
+    return fig, axs
     
 def create_alpha_transition_graphic(image1, image2, num_steps=5, blend_mode='normal'):
     """
